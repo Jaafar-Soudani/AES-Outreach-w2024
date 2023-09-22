@@ -13,7 +13,7 @@ run a development server
 ```
 npm run dev
 ```
-Find the app at [https://localhost/3000]
+Find the app at [Port 3000](https://localhost/3000)
 
 
 #### To run Goal 1

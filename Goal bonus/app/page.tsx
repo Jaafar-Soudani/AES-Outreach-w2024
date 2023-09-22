@@ -25,7 +25,7 @@ function shuffleArray(array: any[], seed : any) : any[]{
   const shuffledArray = [...array];
 
   for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.sin(seed) * (i + 1));
+    const j = Math.floor(Math.abs(Math.sin(seed)) * (i + 1));
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
   }
 
@@ -117,13 +117,9 @@ export default function Home() {
   //check if game was won, and redirect to congrats page if yes
   useEffect(()=>{
     if(questionCounter>=QUESTIONS_TO_WIN){
-      console.log("routing");
       window.location.href = '/congrats';
       
-    }else{
-      console.log('not yet');
     }
-
   },[questionCounter] );
 
 
@@ -131,7 +127,7 @@ export default function Home() {
   const handleAnswer = (event: ChangeEvent<HTMLInputElement>)=>{
     const UserAnswer = event.target.value;
     console.log(UserAnswer, "vs", answerTrue);
-    if(UserAnswer.toLowerCase() === answerTrue.toString().toLowerCase()){
+    if(UserAnswer.toLowerCase() === decode(answerTrue.toString()).toString().toLowerCase()){
       setNotification({
         message: "Correct!",
         style:"green",
